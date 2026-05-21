@@ -1,105 +1,205 @@
-# Waza3ly Food Distribution Platform
+<div align="center">
 
-A full-stack web platform connecting food donors, volunteers, and people in need to reduce food waste. Features role-based dashboards, donation management, and delivery tracking.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:064e3b,50:065f46,100:059669&height=180&section=header&text=Waza3ly%20%D9%88%D8%B2%D8%B9%D9%84%D9%8A&fontSize=42&fontColor=ffffff&fontAlignY=38&desc=Food%20Distribution%20Platform%20%7C%20Cairo%2C%20Egypt&descAlignY=58&descSize=16&animation=fadeIn" width="100%"/>
 
-##  Project Overview
+<br/>
 
-Waza3ly (وزعلي) is a comprehensive food distribution platform designed to bridge the gap between food donors and those in need, while coordinating volunteer efforts for efficient delivery and distribution.
+![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=flat-square&logo=php&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Architecture](https://img.shields.io/badge/Pattern-MVC%20%2B%20Strategy%20%2B%20Decorator-059669?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 
-##  Key Features
+<br/>
 
-### For Donors
-- **Easy Donation Management**: Submit food donations with details, quantities, and pickup preferences
-- **Real-time Tracking**: Monitor donation status from submission to delivery
-- **Flexible Scheduling**: Set convenient pickup times and locations
+> **وزعلي** — Arabic for *"distribute for me"*. A platform connecting food donors, volunteers, and people in need to fight food waste in Egypt.
 
-### For Volunteers
-- **Assignment Dashboard**: View and accept delivery assignments
-- **Route Optimization**: Efficient pickup and delivery coordination
-- **Impact Tracking**: See the difference you're making in the community
+</div>
 
-### For Administrators
-- **Comprehensive Management**: Oversee all donations, volunteers, and distributions
-- **Analytics Dashboard**: Track platform performance and impact metrics
-- **User Management**: Handle registrations, verifications, and account management
+<br/>
 
-##  Technology Stack
+## 📋 Overview
 
-- **Frontend**: HTML5, Tailwind CSS, JavaScript
-- **Backend**: PHP 8.x with MVC Architecture
-- **Database**: PostgreSQL
-- **Authentication**: Custom session-based authentication
-- **Architecture Patterns**: 
-  - MVC (Model-View-Controller)
-  - Strategy Pattern (Payment processing)
-  - Decorator Pattern (Validation)
+Waza3ly is a full-stack web platform built to solve a real problem: surplus food in Egypt goes to waste while millions go hungry. The platform coordinates the full pipeline — from a donor submitting leftover food, to a volunteer picking it up, to a recipient receiving it — with role-based dashboards for each actor.
 
-##  Project Structure
-├── app/
-│   ├── controllers/     # Business logic controllers
-│   ├── models/         # Database models and entities
-│   ├── views/          # HTML/PHP view templates
-│   └── utils/          # Validation and utility classes
-├── config/
-│   ├── config.php      # Database configuration
-│   └── schema.sql      # PostgreSQL database schema
-└── public/
-├── assets/         # CSS, JavaScript, and images
-└── index.php       # Application entry point
+<br/>
 
-##  Setup Instructions
+## 🎯 Three Roles, One Platform
 
-### Prerequisites
-- PHP 8.0+
-- PostgreSQL 12+
-- Web server (Apache/Nginx)
+### 🍱 Donors
+- Submit food donations with quantities, categories, and photos
+- Set pickup time slots and location preferences
+- Track donation status from submission to delivery in real time
+- Choose payment method for platform support (Cash, Visa, Fawry)
 
-### Installation
+### 🚴 Volunteers
+- View and accept delivery assignments from a dashboard
+- Coordinate pickup and drop-off with route details
+- Track personal impact metrics
 
-1. Clone the repository
+### 🛡️ Administrators
+- Manage all users, donations, and delivery assignments
+- Review platform-wide analytics and impact metrics
+- Handle registrations, verifications, and account issues
+
+<br/>
+
+## 🏗️ Architecture & Design Patterns
+
+```
+┌─────────────────────────────────────────────┐
+│                  Client (Browser)            │
+│           HTML5 · Tailwind CSS · JS          │
+└─────────────────────┬───────────────────────┘
+                      │ HTTP
+┌─────────────────────▼───────────────────────┐
+│              PHP 8.x MVC Layer               │
+│  ┌───────────┐  ┌──────────┐  ┌──────────┐  │
+│  │Controllers│  │  Models  │  │  Views   │  │
+│  │ Auth      │  │ Users    │  │ Donor    │  │
+│  │ Users     │  │ Requests │  │ Volunteer│  │
+│  │ Requests  │  │ Donations│  │ Admin    │  │
+│  │ Locations │  │ Payments │  │ dashbrd  │  │
+│  └───────────┘  └──────────┘  └──────────┘  │
+│                                              │
+│  ┌──────────────────────────────────────┐    │
+│  │         Design Patterns              │    │
+│  │  Strategy: Payment (Cash/Visa/Fawry) │    │
+│  │  Decorator: Validation pipeline      │    │
+│  └──────────────────────────────────────┘    │
+└─────────────────────┬───────────────────────┘
+                      │
+┌─────────────────────▼───────────────────────┐
+│              PostgreSQL Database             │
+└─────────────────────────────────────────────┘
+```
+
+**Design Patterns used:**
+- **MVC** — Clean separation of concerns across Controllers, Models, and Views
+- **Strategy Pattern** — Payment processing abstracted behind `PaymentStrategy` interface; pluggable Cash, Visa, and Fawry implementations
+- **Decorator Pattern** — Validation logic layered via `ValidatorDecorator` and `ValidatorInterface`; validators composable without modifying core classes
+
+<br/>
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | HTML5, Tailwind CSS, JavaScript |
+| Backend | PHP 8.x (custom MVC framework) |
+| Database | PostgreSQL 12+ |
+| Auth | Custom session-based authentication |
+| Payments | Cash, Visa, Fawry (Strategy pattern) |
+| Hosting | Apache / Nginx |
+
+<br/>
+
+## 🚀 Quick Start
+
+**Prerequisites:** PHP 8.0+, PostgreSQL 12+, Apache or Nginx
+
 ```bash
+# Clone
 git clone https://github.com/itomarbahaaeldin/waza3ly-food-distribution-platform.git
 cd waza3ly-food-distribution-platform
-```
 
-2. Configure database connection in `config/config.php`
-```php
-$host = "your_host";
-$dbname = "Waza3ly";
-$user = "your_username";
+# Configure database
+# Edit config/config.php:
+$host     = "your_host";
+$dbname   = "Waza3ly";
+$user     = "your_username";
 $password = "your_password";
+
+# Import schema
+psql -U your_username -d Waza3ly -f schema.sql
+
+# Start server (example with PHP built-in server for development)
+php -S localhost:8000
 ```
 
-3. Import database schema
-```bash
-psql -U your_username -d Waza3ly -f config/schema.sql
+Then open [http://localhost:8000](http://localhost:8000)
+
+<br/>
+
+## 📁 Project Structure
+
+```
+waza3ly/
+├── index.php                    # Entry point
+├── schema.sql                   # Full PostgreSQL schema
+├── main.js                      # Frontend JS
+│
+├── Controllers/
+│   ├── AuthController.php       # Login, register, password reset
+│   ├── UserController.php       # Profile, account management
+│   ├── RequestController.php    # Donation request lifecycle
+│   └── LocationsController.php  # Pickup location management
+│
+├── Models/
+│   ├── UsersModel.php           # User accounts & roles
+│   ├── RequestsModel.php        # Donation requests
+│   ├── DonorsModel.php          # Donor profiles
+│   ├── VolunteersModel.php      # Volunteer profiles & assignments
+│   ├── PaymentsModel.php        # Payment records
+│   └── ...                      # 15+ models total
+│
+├── Validators/
+│   ├── ValidatorInterface.php   # Base validation contract
+│   ├── ValidatorDecorator.php   # Decorator base class
+│   ├── PersonalInfoValidator.php
+│   ├── AccountInfoValidator.php
+│   └── ...                      # Domain-specific validators
+│
+├── Payment/
+│   ├── PaymentStrategy.php      # Strategy interface
+│   ├── CashStrategy.php
+│   ├── VisaStrategy.php
+│   └── FawryStrategy.php
+│
+└── Views/
+    ├── home.php                 # Landing page
+    ├── donordashboard.php       # Donor portal
+    ├── volunteerdashboard.php   # Volunteer portal
+    ├── admindashboard.php       # Admin portal
+    └── ...
 ```
 
-4. Start your web server and navigate to the project directory
+<br/>
 
-##  Design Principles
+## 🔐 Security
 
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **User Experience**: Intuitive interfaces for all user roles
-- **Security**: Input validation, SQL injection prevention, secure authentication
-- **Scalability**: Modular architecture supporting future enhancements
+- SQL injection prevention via prepared statements
+- Session-based authentication with CSRF protection
+- Input validation on all user-facing forms via the Decorator validation pipeline
+- Password hashing with PHP's `password_hash()`
 
-##  Impact
+<br/>
 
-This platform aims to:
-- Reduce food waste in local communities
-- Efficiently connect surplus food with those in need
-- Coordinate volunteer efforts for maximum impact
-- Provide transparency in the food distribution process
+## 🌍 Impact
 
-##  Contributing
+This platform directly addresses food insecurity in Egypt by:
+- Reducing food waste from restaurants, events, and households
+- Enabling structured volunteer coordination for last-mile delivery
+- Providing donors full visibility into where their food goes
+- Giving admins data to measure and optimize distribution efficiency
 
-Contributions are welcome! Please feel free to submit issues and enhancement requests.
+<br/>
 
-##  License
+## 👨‍💻 Author
 
-This project is open source and available under the [MIT License](LICENSE).
+**Omar Bahaa Eldin**
 
----
+[![Portfolio](https://img.shields.io/badge/Portfolio-000?style=flat-square&logo=vercel&logoColor=white)](https://itomarbahaaeldin.github.io/omar-bahaa-portfolio/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/omar-bahaaeldin10)
+[![Gmail](https://img.shields.io/badge/Gmail-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:itomarbahaaeldin@gmail.com)
 
-Built with ❤️ for community impact and food waste reduction.
+<br/>
+
+## 📄 License
+
+MIT © [Omar Bahaa Eldin](https://github.com/itomarbahaaeldin)
+
+<div align="center">
+<br/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:059669,50:065f46,100:064e3b&height=100&section=footer" width="100%"/>
+</div>
