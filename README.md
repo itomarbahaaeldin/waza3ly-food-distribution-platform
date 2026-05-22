@@ -64,7 +64,7 @@ Waza3ly is a full-stack web platform built to solve a real problem: surplus food
 │                                              │
 │  ┌──────────────────────────────────────┐    │
 │  │         Design Patterns              │    │
-│  │  Strategy: Payment (Cash/Visa/Fawry) │    │
+│  │  Strategy: Payment (Cash/Visa) │    │
 │  │  Decorator: Validation pipeline      │    │
 │  └──────────────────────────────────────┘    │
 └─────────────────────┬───────────────────────┘
@@ -89,7 +89,7 @@ Waza3ly is a full-stack web platform built to solve a real problem: surplus food
 | Backend | PHP 8.x (custom MVC framework) |
 | Database | PostgreSQL 12+ |
 | Auth | Custom session-based authentication |
-| Payments | Cash, Visa, Fawry (Strategy pattern) |
+| Payments | Cash, Visa (Strategy pattern) |
 | Hosting | Apache / Nginx |
 
 <br/>
@@ -124,44 +124,38 @@ Then open [http://localhost:8000](http://localhost:8000)
 ## 📁 Project Structure
 
 ```
-waza3ly/
-├── index.php                    # Entry point
-├── schema.sql                   # Full PostgreSQL schema
-├── main.js                      # Frontend JS
+waza3ly-food-distribution-platform/
+├── index.php                     # Entry point
+├── schema.sql                    # Full PostgreSQL schema
+├── main.js                       # Frontend JS
 │
-├── Controllers/
-│   ├── AuthController.php       # Login, register, password reset
-│   ├── UserController.php       # Profile, account management
-│   ├── RequestController.php    # Donation request lifecycle
-│   └── LocationsController.php  # Pickup location management
+├── AuthController.php            # Login, register, password reset
+├── UserController.php            # Profile, account management
+├── RequestController.php         # Donation request lifecycle
+├── LocationsController.php       # Pickup location management
 │
-├── Models/
-│   ├── UsersModel.php           # User accounts & roles
-│   ├── RequestsModel.php        # Donation requests
-│   ├── DonorsModel.php          # Donor profiles
-│   ├── VolunteersModel.php      # Volunteer profiles & assignments
-│   ├── PaymentsModel.php        # Payment records
-│   └── ...                      # 15+ models total
+├── UsersModel.php                # User accounts & roles
+├── RequestsModel.php             # Donation requests
+├── DonorsModel.php               # Donor profiles
+├── VolunteersModel.php           # Volunteer profiles & assignments
+├── PaymentsModel.php             # Payment records
+│   ...                           # 20+ additional model files
 │
-├── Validators/
-│   ├── ValidatorInterface.php   # Base validation contract
-│   ├── ValidatorDecorator.php   # Decorator base class
-│   ├── PersonalInfoValidator.php
-│   ├── AccountInfoValidator.php
-│   └── ...                      # Domain-specific validators
+├── ValidatorInterface.php        # Base validation contract
+├── ValidatorDecorator.php        # Decorator base class
+├── PersonalInfoValidator.php
+├── AccountInfoValidator.php
+│   ...                           # Domain-specific validators
 │
-├── Payment/
-│   ├── PaymentStrategy.php      # Strategy interface
-│   ├── CashStrategy.php
-│   ├── VisaStrategy.php
-│   └── FawryStrategy.php
+├── PaymentStrategy.php           # Strategy interface
+├── CashStrategy.php
+├── VisaStrategy.php
 │
-└── Views/
-    ├── home.php                 # Landing page
-    ├── donordashboard.php       # Donor portal
-    ├── volunteerdashboard.php   # Volunteer portal
-    ├── admindashboard.php       # Admin portal
-    └── ...
+├── home.php                      # Landing page
+├── donordashboard.php            # Donor portal
+├── volunteerdashboard.php        # Volunteer portal
+├── admindashboard.php            # Admin portal
+└── ...                           # Additional view files
 ```
 
 <br/>
